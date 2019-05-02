@@ -1,18 +1,8 @@
-const loadQuestions = () => {
-  fetch('http://localhost:4000/loadFeedback', {
-    method: 'GET',
-    mode: 'cors',
-    headers: {
-      'Content-Type': 'application/json',
-    },
+const loadQuestions = (questions) => {
+  return ({
+    type: 'LOAD_QUESTIONS',
+    questions: questions
   })
-    .then(response => response.json())
-    .then(json => {
-      return ({
-        type: 'LOAD_QUESTIONS',
-        questions: json
-      })
-    })
-  };
+};
 
 export default loadQuestions;
