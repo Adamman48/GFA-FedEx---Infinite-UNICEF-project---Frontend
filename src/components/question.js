@@ -20,25 +20,29 @@ class Question extends React.Component {
   findChecked = () => {
     let checked = document.querySelectorAll('.answer');
     let dataid = [];
-
     checked.forEach(element => {
       if (element.checked) {
         dataid.push(element.getAttribute('dataid'));
       }
     })
-
     this.setState({
       responses: dataid
     })
   }
+  sendAnswers(){
+    fetch(url, {
+      method: 'POST',
+      body: JSON.stringify(answerIDs),
+      headers:{
+        'Content-Type': 'application/json'
+      }
+    }).then(res => res.json())
+    .then(response => this.setState((prevState) => ({counter: prevState.counter+1})))
+    .catch(error => console.error('Error:', error));
+  }
   onSubmit = (event) => {
     event.preventDefault();
     this.findChecked();
-    //fetch {}
-    //send to backend
-    //update state from store
-    //increment counter
-    //render comp with new state values 
   }
 
   render() {
@@ -54,5 +58,5 @@ class Question extends React.Component {
     )
   }
 }
-// exports to
+
 export default Question
