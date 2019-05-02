@@ -6,9 +6,9 @@ class Question extends React.Component {
     super(props);
     this.state = {
       counter: 0,
-      questionID: 1,
+      questionID: this.props.questionID,
+      questionText: this.props.questionText,
       answerIDs: [1, 2, 3],
-      questionText: 'wassup',
       answersText: ['not much', 'sod off', 'fine thx'],
       responses: [],
       render: false,
@@ -35,11 +35,10 @@ class Question extends React.Component {
   onSubmit = (event) => {
     event.preventDefault();
     this.findChecked();
-    // find checked boxes
     //fetch {}
     //send to backend
     //update state from store
-    //
+    //increment counter
     //render comp with new state values 
   }
 
