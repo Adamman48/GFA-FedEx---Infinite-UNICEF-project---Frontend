@@ -6,32 +6,46 @@ class Question extends React.Component {
     super(props);
     this.state = {
       counter: 0,
-      question: 'wassup',
+      questionID: this.props.questionID,
+      questionText: this.props.questionText,
+      answerIDs: [1, 2, 3],
+      answersText: ['not much', 'sod off', 'fine thx'],
+      responses: [],
       render: false,
-      answers: ['not much', 'sod off', 'fine thx'],
-      responses: []
     };
-    this.setAnswerId = this.setAnswerId.bind(this);
-  }
-  setAnswerId = (qid) => {
-   /*  this.setState({ responses = responses.push(qid) }, () => {
-      console.log(this.state.responses);
-    }) */
+    this.onSubmit = this.onSubmit.bind(this);
+    this.findChecked = this.findChecked.bind(this);
   }
 
-  onSubmit = () => {
-    //prevent default
+  findChecked = () => {
+    let checked = document.querySelectorAll('.answer');
+    let dataid = [];
+
+    checked.forEach(element => {
+      if (element.checked) {
+        dataid.push(element.getAttribute('dataid'));
+      }
+    })
+
+    this.setState({
+      responses: dataid
+    }, () => { console.log(this.state.responses) })
+  }
+
+  onSubmit = (event) => {
+    event.preventDefault();
+    this.findChecked();
     //fetch {}
     //send to backend
     //update state from store
-    //
+    //increment counter
     //render comp with new state values 
   }
 
   render() {
-    const {counter, question, render, answers, responses} = this.state;
+    const { counter, questionText, render, answersText, responses, questionID, answerIDs } = this.state;
     return (
-      <QuestionJSX question={question} answers={answers} setAnswerId={this.setAnswerId} counter = {counter}/>
+      <QuestionJSX questionText={questionText} answersText={answersText} onSubmit={this.onSubmit} answerIDs={answerIDs} findChecked={this.findChecked} />
     )
   }
 }
