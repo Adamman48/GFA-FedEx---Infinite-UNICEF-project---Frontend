@@ -6,7 +6,7 @@ const QuestionsJSX = (props) => {
   const renderAnswer = (answer, id) => (
     <div className="oneAnswer">
       <label htmlFor="answer">
-        <input type="checkbox" id="answer" name={answer} data-id={id} />
+        <input type="checkbox" className="answer" name={answer} dataid={id} />
         {answer}
       </label>
     </div>
@@ -19,7 +19,7 @@ const QuestionsJSX = (props) => {
       </div>
       <form onSubmit={onSubmit}>
         {answersText.map((elem, index) => renderAnswer(elem, answerIDs[index]))}
-        <input type="submit" />
+        <input type="submit" value="submit"/>
       </form>
     </div>
   );

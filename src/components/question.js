@@ -14,14 +14,28 @@ class Question extends React.Component {
       render: false,
     };
     this.onSubmit = this.onSubmit.bind(this);
+    this.findChecked = this.findChecked.bind(this);
+  }
+
+  findChecked = () => {
+    let checked = document.querySelectorAll('.answer');
+    let dataid = [];
+
+    checked.forEach(element => {
+      if (element.checked) {
+        dataid.push(element.getAttribute('dataid'));
+      }
+    })
+
+    this.setState({
+      responses: dataid
+    }, () => { console.log(this.state.responses) })
   }
 
   onSubmit = (event) => {
     event.preventDefault();
+    this.findChecked();
     // find checked boxes
-    this.setState({
-      responses: [...this.state.responses, this.state.questionID]
-    }, () => { console.log(this.state.responses) })
     //fetch {}
     //send to backend
     //update state from store
@@ -32,7 +46,7 @@ class Question extends React.Component {
   render() {
     const { counter, questionText, render, answersText, responses, questionID, answerIDs } = this.state;
     return (
-      <QuestionJSX questionText={questionText} answersText={answersText} onSubmit={this.onSubmit} answerIDs={answerIDs} />
+      <QuestionJSX questionText={questionText} answersText={answersText} onSubmit={this.onSubmit} answerIDs={answerIDs} findChecked={this.findChecked} />
     )
   }
 }
