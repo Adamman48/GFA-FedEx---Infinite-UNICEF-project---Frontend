@@ -2,11 +2,11 @@ import React from 'react';
 
 const QuestionsJSX = (props) => {
 
-  const { question, answers, setAnswerId, counter } = props
-  const renderAnswer = answer => (
+  const { questionText, answersText, onSubmit, answerIDs } = props
+  const renderAnswer = (answer, id) => (
     <div className="oneAnswer">
       <label htmlFor="answer">
-        <input type="checkbox" id="answer" name={answer} onChange={setAnswerId(counter)}/>
+        <input type="checkbox" id="answer" name={answer} data-id={id} />
         {answer}
       </label>
     </div>
@@ -14,11 +14,12 @@ const QuestionsJSX = (props) => {
 
   return (
     <div>
-      <div className="question">
-        <h3>{question}</h3>
+      <div className="questionText">
+        <h3>{questionText}</h3>
       </div>
-      <form>
-        {answers.map(elem => renderAnswer(elem))}
+      <form onSubmit={onSubmit}>
+        {answersText.map((elem, index) => renderAnswer(elem, answerIDs[index]))}
+        <input type="submit" />
       </form>
     </div>
   );

@@ -6,21 +6,22 @@ class Question extends React.Component {
     super(props);
     this.state = {
       counter: 0,
-      question: 'wassup',
+      questionID: 1,
+      answerIDs: [1, 2, 3],
+      questionText: 'wassup',
+      answersText: ['not much', 'sod off', 'fine thx'],
+      responses: [],
       render: false,
-      answers: ['not much', 'sod off', 'fine thx'],
-      responses: []
     };
-    this.setAnswerId = this.setAnswerId.bind(this);
-  }
-  setAnswerId = (qid) => {
-   /*  this.setState({ responses = responses.push(qid) }, () => {
-      console.log(this.state.responses);
-    }) */
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
-  onSubmit = () => {
-    //prevent default
+  onSubmit = (event) => {
+    event.preventDefault();
+    // find checked boxes
+    this.setState({
+      responses: [...this.state.responses, this.state.questionID]
+    }, () => { console.log(this.state.responses) })
     //fetch {}
     //send to backend
     //update state from store
@@ -29,9 +30,9 @@ class Question extends React.Component {
   }
 
   render() {
-    const {counter, question, render, answers, responses} = this.state;
+    const { counter, questionText, render, answersText, responses, questionID, answerIDs } = this.state;
     return (
-      <QuestionJSX question={question} answers={answers} setAnswerId={this.setAnswerId} counter = {counter}/>
+      <QuestionJSX questionText={questionText} answersText={answersText} onSubmit={this.onSubmit} answerIDs={answerIDs} />
     )
   }
 }

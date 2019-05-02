@@ -9,7 +9,7 @@ export default class App extends Component {
     return (
       <Provider store={store}>
         <div>
-          <WelcomePage />
+          {/* <WelcomePage /> */}
           <Question />
         </div>
       </Provider>
