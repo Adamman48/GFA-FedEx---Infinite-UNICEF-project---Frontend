@@ -1,25 +1,20 @@
 import React from 'react';
 
 const renderAnswer = (answer, id) => (
-  <div className="oneAnswer">
-    <label htmlFor="answer">
-      <input type="checkbox" className="answer" name={answer} dataid={id} />
+      <div className="answer" name={answer} dataid={id}>
       {answer}
-    </label>
-  </div>
+      </div>
 )
 
 const QuestionsJSX = (props) => {
 
-  const { questionText, answersText, onSubmit, answerIDs } = props
+  const { questionText, answersText, onClick, answerIDs } = props;
+
   return (
     <div>
-      <div className="questionText">
         <h3>{questionText}</h3>
-      </div>
-      <form onSubmit={onSubmit}>
+      <form onClick={onClick}>
         {answersText.map((elem, index) => renderAnswer(elem, answerIDs[index]))}
-        <input type="submit" value="submit"/>
       </form>
     </div>
   );

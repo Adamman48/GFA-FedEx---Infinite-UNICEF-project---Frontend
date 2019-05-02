@@ -13,7 +13,7 @@ class Question extends React.Component {
       responses: [],
       render: false,
     };
-    this.onSubmit = this.onSubmit.bind(this);
+    this.onClick = this.onClick.bind(this);
     this.findChecked = this.findChecked.bind(this);
   }
 
@@ -40,21 +40,17 @@ class Question extends React.Component {
     .then(response => this.setState((prevState) => ({counter: prevState.counter+1})))
     .catch(error => console.error('Error:', error));
   }
-  onSubmit = (event) => {
+  onClick = (event) => {
     event.preventDefault();
-    this.findChecked();
+    this.setState({responses: event.target.getAttribute('dataid')});
+     
   }
 
   render() {
-    /* let counter2 = this.state.counter;
-    let answerblabla = this.props.questions[1]
-    let a = JSON.parse(answerblabla
-    console.log(a.questions[0]); */
-    let answersText2 = this.props.questions[0].answers;
-    console.log(answersText2)
+    console.log(this.state.responses);
     const { counter, questionText, render, answersText, responses, questionID, answerIDs } = this.state;
     return (
-      <QuestionJSX questionText={questionText} answersText={answersText} onSubmit={this.onSubmit} answerIDs={answerIDs} findChecked={this.findChecked} />
+      <QuestionJSX questionText={questionText} answersText={answersText} onClick={this.onClick} answerIDs={answerIDs} findChecked={this.findChecked} />
     )
   }
 }
