@@ -1,17 +1,17 @@
 import React from 'react';
 
+const renderAnswer = (answer, id) => (
+  <div className="oneAnswer">
+    <label htmlFor="answer">
+      <input type="checkbox" className="answer" name={answer} dataid={id} />
+      {answer}
+    </label>
+  </div>
+)
+
 const QuestionsJSX = (props) => {
 
   const { questionText, answersText, onSubmit, answerIDs } = props
-  const renderAnswer = (answer, id) => (
-    <div className="oneAnswer">
-      <label htmlFor="answer">
-        <input type="checkbox" className="answer" name={answer} dataid={id} />
-        {answer}
-      </label>
-    </div>
-  )
-
   return (
     <div>
       <div className="questionText">
@@ -25,3 +25,4 @@ const QuestionsJSX = (props) => {
   );
 }
 export default QuestionsJSX;
+
