@@ -14,9 +14,9 @@ class Question extends React.Component {
     this.setAnswerId = this.setAnswerId.bind(this);
   }
   setAnswerId = (qid) => {
-    this.setState({ responses = responses.push(qid) }, () => {
+   /*  this.setState({ responses = responses.push(qid) }, () => {
       console.log(this.state.responses);
-    })
+    }) */
   }
 
   onSubmit = () => {
