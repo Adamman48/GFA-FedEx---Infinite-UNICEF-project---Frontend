@@ -10,13 +10,8 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-const mapStateToProps = state => {
-  return {
-  questions: state.questions
-}};
-
 const WelcomePageContainer = connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(WelcomePage);
 export default WelcomePageContainer;

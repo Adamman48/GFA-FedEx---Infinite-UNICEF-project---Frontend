@@ -9,7 +9,7 @@ class WelcomePage extends React.Component {
     }
   }
   fetchQuestions(){
-    fetch('https://swapi.co/api/people/1/', {
+    fetch('http://localhost:4000/load', {
     method: 'GET',
   })
     .then(response => response.json())
@@ -23,7 +23,9 @@ class WelcomePage extends React.Component {
   render() {
     if(this.state !== 'nothing'){
       const { loadQuestions } = this.props;
-      loadQuestions(this.state);
+      loadQuestions(this.state.questions);
+      console.log(this.props);
+      
     }
     return (
       <div>
