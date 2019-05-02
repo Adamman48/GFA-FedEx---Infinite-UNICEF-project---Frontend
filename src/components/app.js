@@ -1,18 +1,15 @@
 import React, { Component } from 'react';
-import Question from '../components/question';
-import { Provider } from 'react-redux';
+import { Route, Switch } from 'react-router-dom';
 import WelcomePage from '../components/welcome-component'
-import store from '../store/store';
+import Question from '../components/question';
 
 export default class App extends Component {
   render() {
     return (
-      <Provider store={store}>
-        <div>
-          <WelcomePage />
-          <Question />
-        </div>
-      </Provider>
+      <Switch>
+        <Route exact path="/" component={WelcomePage} />
+        <Route exact path="/questions" component={Question} />
+      </Switch>
     );
   }
 }
