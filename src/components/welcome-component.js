@@ -1,4 +1,6 @@
 import React from "react";
+import { Redirect } from 'react-router-dom';
+
 
 class WelcomePage extends React.Component {
   constructor(props) {
@@ -8,30 +10,32 @@ class WelcomePage extends React.Component {
       questions: 'nothing'
     }
   }
-  fetchQuestions(){
+  fetchQuestions() {
     fetch('http://localhost:4000/load', {
-    method: 'GET',
-  })
-    .then(response => response.json())
-    .then(json => 
-      this.setState({questions:json})
-    )
+      method: 'GET',
+    })
+      .then(response => response.json())
+      .then(json =>
+        this.setState({ questions: json })
+      )
   }
-  componentDidMount(){
+  componentDidMount() {
     this.fetchQuestions();
   }
   render() {
-    if(this.state !== 'nothing'){
+    if (this.state !== 'nothing') {
       const { loadQuestions } = this.props;
       loadQuestions(this.state.questions);
       console.log(this.props);
-      
+
     }
     return (
       <div>
         <h1>Üdvözöllek a UNICEF Magyarorszag Ébresztőóra honlapján!</h1>
         <h3>Kíváncsiak vagyunk a véleményedre!</h3>
-        <div>Kérdések indítása!</div>
+        <button type="button" onClick={() => {
+          return (<Redirect to="/questions" />)
+        }}>Kérdések indítása!</button>
       </div>
     );
   }
