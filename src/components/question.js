@@ -42,9 +42,9 @@ class Question extends React.Component {
     let question = this.props.questions[counter].questionText;
     let answers = [];
     let answersId = [];
-    for (let i = 0; i < this.props.answers[counter+3].length; i++) {
-      answers.push(this.props.answers[counter+3][i].answerText);
-      answersId.push(this.props.answers[counter+3][i]._id);
+    for (let i = 0; i < this.props.answers[counter+5].length; i++) {
+      answers.push(this.props.answers[counter+5][i].answerText);
+      answersId.push(this.props.answers[counter+5][i]._id);
     }
     return (
       <QuestionJSX
