@@ -7,9 +7,7 @@ const renderAnswer = (answer, id) => (
 )
 
 const QuestionsJSX = (props) => {
-
   const { questionText, answersText, onClick, answerIDs } = props;
-
   return (
     <div>
         <h3>{questionText}</h3>

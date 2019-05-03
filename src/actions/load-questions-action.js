@@ -1,7 +1,8 @@
-const loadQuestions = (questions) => {
+const loadQuestions = (questions, answers) => {
   return ({
     type: 'LOAD_QUESTIONS',
-    questions: questions
+    questions: questions,
+    answers: answers
   })
 };
 
