@@ -1,5 +1,5 @@
 import React from "react";
-import { Redirect } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 
 class WelcomePage extends React.Component {
@@ -15,10 +15,10 @@ class WelcomePage extends React.Component {
     fetch('http://localhost:4000/load', {
       method: 'GET',
     })
-      .then(response => response.json())
-      .then(json =>
+      .then(response => {console.log('res',response);response.json()})
+      .then(json => {console.log('json',json);
         this.setState({ question: json,
-        answers: json })
+        answers: json })}
       )
   }
   componentDidMount() {
@@ -32,14 +32,13 @@ class WelcomePage extends React.Component {
     console.log(this.state.question.questions);
     console.log(this.state.answers.answers);
     
-    
     return (
       <div>
-        <h1>Üdvözöllek a UNICEF Magyarország Ébresztőóra honlapján!</h1>
-        <h3>Kíváncsiak vagyunk a véleményedre!</h3>
-        <button type="button" onClick={() => {
-          return (<Redirect to="/questions" />)
-        }}>Kérdések indítása!</button>
+        <h1>{"Üdvözöllek a UNICEF Magyarország Ébresztőóra honlapján!"}</h1>
+          <h3>{"Kíváncsiak vagyunk a véleményedre!"}</h3>
+            <NavLink to="/feedback">
+              <button>{"Kérdések indítása"}</button>
+            </NavLink>
       </div>
     );
   }
