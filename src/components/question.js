@@ -42,9 +42,8 @@ class Question extends React.Component {
         this.setState({ questions: json })
       )
   }
-
   render() {
-    console.log(this.state);
+    console.log(this.props);
     const { questionText,  answersText, answerIDs } = this.state;
     return (
       <QuestionJSX questionText={questionText} answersText={answersText} onClick={this.onClick} answerIDs={answerIDs} />

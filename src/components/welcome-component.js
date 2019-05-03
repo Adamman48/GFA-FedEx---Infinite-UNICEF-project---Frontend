@@ -17,8 +17,8 @@ class WelcomePage extends React.Component {
     })
       .then(response => response.json())
       .then(json =>
-        this.setState({ question: json,
-        answers: json })
+        this.setState({ question: json.questions[0],
+        answers: json.answers[1] })
       )
   }
   componentDidMount() {
@@ -29,9 +29,6 @@ class WelcomePage extends React.Component {
       const { loadQuestions } = this.props;
       loadQuestions(this.state.question, this.state.answers);
     }
-    console.log(this.state.question.questions);
-    console.log(this.state.answers.answers);
-    
     return (
       <div>
         <h1>Üdvözöllek a UNICEF Magyarország Ébresztőóra honlapján!</h1>
