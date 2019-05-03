@@ -17,8 +17,8 @@ class WelcomePage extends React.Component {
     })
       .then(response => response.json())
       .then(json =>
-        this.setState({ question: json.questions[0],
-        answers: json.answers[1] })
+        this.setState({ question: json.questions,
+        answers: json.answers })
       )
   }
   componentDidMount() {
