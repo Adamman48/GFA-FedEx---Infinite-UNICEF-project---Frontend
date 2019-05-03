@@ -6,7 +6,8 @@ function questionReducer(
     case 'LOAD_QUESTIONS': {
       return {
         ...state,
-        questions: action.questions
+        questions: action.questions,
+        answers: action.answers
       };
     }
     default:

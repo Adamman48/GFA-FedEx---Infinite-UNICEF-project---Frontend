@@ -15,10 +15,10 @@ class WelcomePage extends React.Component {
     fetch('http://localhost:4000/load', {
       method: 'GET',
     })
-      .then(response => {console.log('res',response);response.json()})
-      .then(json => {console.log('json',json);
-        this.setState({ question: json,
-        answers: json })}
+      .then(response => response.json())
+      .then(json =>
+        this.setState({ question: json.questions[0],
+        answers: json.answers[1] })
       )
   }
   componentDidMount() {
@@ -29,8 +29,7 @@ class WelcomePage extends React.Component {
       const { loadQuestions } = this.props;
       loadQuestions(this.state.question, this.state.answers);
     }
-    console.log(this.state.question.questions);
-    console.log(this.state.answers.answers);
+    console.log(this.state.question, this.state.answers);
     
     return (
       <div>
