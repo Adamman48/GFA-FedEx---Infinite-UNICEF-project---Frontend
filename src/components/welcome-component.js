@@ -32,7 +32,6 @@ class WelcomePage extends React.Component {
     console.log(this.state.question.questions);
     console.log(this.state.answers.answers);
     
-    
     return (
       <div>
         <h1>Üdvözöllek a UNICEF Magyarország Ébresztőóra honlapján!</h1>
