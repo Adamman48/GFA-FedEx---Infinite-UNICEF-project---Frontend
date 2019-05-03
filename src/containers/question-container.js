@@ -8,5 +8,5 @@ const mapStateToProps = state => ({
 
 const QuestionContainer = connect(
   mapStateToProps
-) (Questions);
+)(Questions);
 export default QuestionContainer;
