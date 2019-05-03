@@ -7,7 +7,8 @@ class WelcomePage extends React.Component {
     super(props);
     this.fetchQuestions = this.fetchQuestions.bind(this);
     this.state = {
-      questions: 'nothing'
+      question: 'nothing',
+      answers: 'nothing'
     }
   }
   fetchQuestions() {
@@ -16,20 +17,25 @@ class WelcomePage extends React.Component {
     })
       .then(response => response.json())
       .then(json =>
-        this.setState({ questions: json })
+        this.setState({ question: json,
+        answers: json })
       )
   }
   componentDidMount() {
     this.fetchQuestions();
   }
   render() {
-    if (this.state !== 'nothing') {
+    if (this.state.question !== 'nothing' && this.state.answers !== 'nothing') {      
       const { loadQuestions } = this.props;
-      loadQuestions(this.state.questions);
+      loadQuestions(this.state.question, this.state.answers);
     }
+    console.log(this.state.question.questions);
+    console.log(this.state.answers.answers);
+    
+    
     return (
       <div>
-        <h1>Üdvözöllek a UNICEF Magyarorszag Ébresztőóra honlapján!</h1>
+        <h1>Üdvözöllek a UNICEF Magyarország Ébresztőóra honlapján!</h1>
         <h3>Kíváncsiak vagyunk a véleményedre!</h3>
         <button type="button" onClick={() => {
           return (<Redirect to="/questions" />)
