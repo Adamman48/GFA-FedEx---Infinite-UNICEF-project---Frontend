@@ -1,5 +1,6 @@
 import React from "react";
 import QuestionJSX from "./questionJSX";
+import { Redirect } from 'react-router-dom';
 
 class Question extends React.Component {
   constructor(props) {
@@ -32,20 +33,25 @@ class Question extends React.Component {
     });
   };
   onClick = event => {
+    console.log(this.props.render);
     event.preventDefault();
     this.setState({ response: event.target.getAttribute("dataid") });
     this.incremCounter();
     this.sendAnswers();
   };
-  render(){
+  render() {
+    if (this.props.render === true) {
+      return <Redirect to="/thankyou" />;
+    }
     let counter = this.props.answerCounter.counter;
     let question = this.props.questions[counter].questionText;
     let answers = [];
     let answersId = [];
-    for (let i = 0; i < this.props.answers[counter+3].length; i++) {
-      answers.push(this.props.answers[counter+3][i].answerText);
-      answersId.push(this.props.answers[counter+3][i]._id);
+    for (let i = 0; i < this.props.answers[counter + 3].length; i++) {
+      answers.push(this.props.answers[counter + 3][i].answerText);
+      answersId.push(this.props.answers[counter + 3][i]._id);
     }
+
     return (
       <QuestionJSX
         questionText={question}
