@@ -1,5 +1,5 @@
 import React from "react";
-import { Redirect } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 
 class WelcomePage extends React.Component {
@@ -29,13 +29,15 @@ class WelcomePage extends React.Component {
       const { loadQuestions } = this.props;
       loadQuestions(this.state.question, this.state.answers);
     }
+    console.log(this.state.question, this.state.answers);
+    
     return (
       <div>
-        <h1>Üdvözöllek a UNICEF Magyarország Ébresztőóra honlapján!</h1>
-        <h3>Kíváncsiak vagyunk a véleményedre!</h3>
-        <button type="button" onClick={() => {
-          return (<Redirect to="/questions" />)
-        }}>Kérdések indítása!</button>
+        <h1>{"Üdvözöllek a UNICEF Magyarország Ébresztőóra honlapján!"}</h1>
+          <h3>{"Kíváncsiak vagyunk a véleményedre!"}</h3>
+            <NavLink to="/feedback">
+              <button>{"Kérdések indítása"}</button>
+            </NavLink>
       </div>
     );
   }
