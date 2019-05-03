@@ -1,9 +1,71 @@
 body{
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
-  background-color: brown;
+  /* font-family: 'Courier New', Courier, monospace;
+  
+  background-color: #3380B0;
+  width: 80%;
+  display: flex;
+  text-align: center;
+   justify-content: center;
+   flex-direction: row; */
+   height: 90vh;
+   background-color: #3380B0;
+
+}
+
+.container {
+  font-family: 'The Girl Next Door', cursive;
+  margin: 0 auto;
+  padding: 0;
+  
+  width: 80%;
+  display: flex;
+  text-align: center;
+   justify-content: center;
+   flex-direction: row;
+
 }
 
 label{
   display: inline;
+}
+
+h1, h3 {
+  font-size: 35px;
+  color: black;
+  -webkit-text-stroke-width: 1px;
+
+}
+
+h3 {
+  font-size: 25px;
+}
+
+form > div{
+   margin: 0 auto;
+   padding: 10px;
+   background-color: rgb(255, 255, 255);
+   border: 1px solid;
+   border-radius: 5px;
+   font-size: 20px;
+}
+
+form > div:hover {
+  background-color: rgb(192, 50, 133);
+  color: white;
+}
+
+button {
+  border: 1px solid black;
+  font-size: 20px;
+  border-radius: 3px;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.img-container {
+  display: flex;
+  text-align: center;
+  background-color: #44AADF;
+  border-bottom: 1px solid black;
 }
