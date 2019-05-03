@@ -4,8 +4,8 @@ import WelcomePage from '../components/welcome-component';
 
 function mapDispatchToProps(dispatch) {
   return {
-    loadQuestions: (payload) => {
-      dispatch(loadQuestions(payload));
+    loadQuestions: (payload, payload2) => {
+      dispatch(loadQuestions(payload, payload2));
     },
   };
 }

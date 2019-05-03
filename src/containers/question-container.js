@@ -1,11 +1,20 @@
 import { connect } from 'react-redux';
 import Questions from '../components/question';
+import incrCounter from '../actions/question-counter'
+
+const mapDispatchToProps = dispatch => ({
+  counter: () => {
+    dispatch(incrCounter())
+  },
+});
 
 const mapStateToProps = state => ({
-  questions: state.questionReducer.questions
+  questions: state.questionReducer.questions,
+  answers: state.questionReducer.answers,
+  answerCounter: state.counter
 });
 
 const QuestionContainer = connect(
-  mapStateToProps
+  mapStateToProps, mapDispatchToProps
 )(Questions);
 export default QuestionContainer;

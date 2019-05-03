@@ -1,55 +1,60 @@
-import React from 'react';
-import QuestionJSX from './questionJSX'
-
+import React from "react";
+import QuestionJSX from "./questionJSX";
 
 class Question extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      counter: 0,
-      questionID: "this.props.questions[0]._id",
-      questionText: "this.props.questions[0].questionText",
-      answerIDs: [1, 2, 3],
-      answersText: ['not much', 'sod off', 'fine thx'],
       response: "",
-      render: false,
+      render: false
     };
     this.onClick = this.onClick.bind(this);
+    this.incremCounter = this.incremCounter.bind(this);
   }
-  sendAnswers(){
-    fetch(url, {
-      method: 'PUT',
-      body: JSON.stringify({ answerId: this.props.questions[counter]._id,
+  sendAnswers() {
+    fetch('http://localhost:4000/update', {
+      method: "PUT",
+      body: JSON.stringify({
+        answerId: this.props.questions._id,
         questionId: response
       }),
-      headers:{
-        'Content-Type': 'application/json'
+      headers: {
+        "Content-Type": "application/json"
       }
-    }).then(res => res.json())
-    .then(response => this.setState((prevState) => ({counter: prevState.counter+1})))
-    .catch(error => console.error('Error:', error));
-  }
-  onClick = (event) => {
-    event.preventDefault();
-    this.setState({response: event.target.getAttribute('dataid')}); 
-  }
-  fetchQuestions() {
-    fetch('http://localhost:4000/load', {
-      method: 'GET',
     })
-      .then(response => response.json())
-      .then(json =>
-        this.setState({ questions: json })
-      )
+      .then(res => res.json())
+      .then(response => response)
+      .catch(error => console.error("Error:", error));
   }
-
-  render() {
-    console.log(this.state);
-    const { questionText,  answersText, answerIDs } = this.state;
+  incremCounter = () => {
+    return new Promise((resolve, reject) => {
+      resolve(this.props.counter());
+    });
+  };
+  onClick = event => {
+    event.preventDefault();
+    this.setState({ response: event.target.getAttribute("dataid") });
+    this.incremCounter();
+    this.sendAnswers();
+  };
+  render(){
+    let counter = this.props.answerCounter.counter;
+    let question = this.props.questions[counter].questionText;
+    let answers = [];
+    let answersId = [];
+    for (let i = 0; i < this.props.answers[counter+3].length; i++) {
+      answers.push(this.props.answers[counter+3][i].answerText);
+      answersId.push(this.props.answers[counter+3][i]._id);
+    }
     return (
-      <QuestionJSX questionText={questionText} answersText={answersText} onClick={this.onClick} answerIDs={answerIDs} />
-    )
+      <QuestionJSX
+        questionText={question}
+        answersText={answers}
+        onClick={this.onClick}
+        answerIDs={answersId}
+      />
+    );
   }
 }
 
-export default Question
+export default Question;
