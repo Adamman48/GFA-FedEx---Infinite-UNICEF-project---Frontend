@@ -29,8 +29,6 @@ class WelcomePage extends React.Component {
       const { loadQuestions } = this.props;
       loadQuestions(this.state.question, this.state.answers);
     }
-    console.log(this.state.question.questions);
-    console.log(this.state.answers.answers);
     
     return (
       <div>
