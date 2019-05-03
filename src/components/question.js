@@ -5,7 +5,6 @@ class Question extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      counter: 0,
       response: "",
       render: false
     };
@@ -13,7 +12,7 @@ class Question extends React.Component {
     this.incremCounter = this.incremCounter.bind(this);
   }
   sendAnswers() {
-    fetch(url, {
+    fetch('http://localhost:4000/update', {
       method: "PUT",
       body: JSON.stringify({
         answerId: this.props.questions._id,
@@ -24,9 +23,7 @@ class Question extends React.Component {
       }
     })
       .then(res => res.json())
-      .then(response =>
-        this.setState(prevState => ({ counter: prevState.counter + 1 }))
-      )
+      .then(response => response)
       .catch(error => console.error("Error:", error));
   }
   incremCounter = () => {
@@ -37,15 +34,17 @@ class Question extends React.Component {
   onClick = event => {
     event.preventDefault();
     this.setState({ response: event.target.getAttribute("dataid") });
+    this.incremCounter();
+    this.sendAnswers();
   };
-  render() {
-    console.log(this.props.questions.questionText);
-    let question = this.props.questions.questionText;
+  render(){
+    let counter = this.props.answerCounter.counter;
+    let question = this.props.questions[counter].questionText;
     let answers = [];
     let answersId = [];
-    for (let i = 0; i < this.props.answers.length; i++) {
-      answers.push(this.props.answers[i].answerText);
-      answersId.push(this.props.answers[i]._id);
+    for (let i = 0; i < this.props.answers[counter+3].length; i++) {
+      answers.push(this.props.answers[counter+3][i].answerText);
+      answersId.push(this.props.answers[counter+3][i]._id);
     }
     return (
       <QuestionJSX

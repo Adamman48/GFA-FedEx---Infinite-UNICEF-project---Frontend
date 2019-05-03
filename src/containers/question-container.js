@@ -10,7 +10,8 @@ const mapDispatchToProps = dispatch => ({
 
 const mapStateToProps = state => ({
   questions: state.questionReducer.questions,
-  answers: state.questionReducer.answers
+  answers: state.questionReducer.answers,
+  answerCounter: state.counter
 });
 
 const QuestionContainer = connect(
